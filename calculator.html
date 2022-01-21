@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="calculator.css">
+</head>
+<body>
+	<div class="body">
+		<div class="design">
+			<h1 style="color: green;">CALCULATOR</h1>
+			<p style="color: #ffffff; font-size: 16px;">Designed by Olagunju Salahudeen Olaniyi</p>
+		</div>
+		<form>
+			<input id="textview" type="text" name="textview" placeholder="0" disabled>
+		</form>
+
+		<div class="calc-area">
+			
+			<div class="button gray none" onclick="insert(1)">1</div>
+			<div class="button gray none" onclick="insert(2)">2</div>
+			<div class="button gray none" onclick="insert(3)">3</div>
+			<div class="button red" id="clean" onclick="clean()">C</div>
+			<div class="button gray none" onclick="insert(4)">4</div>
+			<div class="button gray none" onclick="insert(5)">5</div>
+			<div class="button gray none" onclick="insert(6)">6</div>
+			<div class="button blue none" onclick="opt('*')">x</div>
+			<div class="button gray none" onclick="insert(7)">7</div>
+			<div class="button gray none" onclick="insert(8)">8</div>
+			<div class="button gray none" onclick="insert(9)">9</div>
+			<div class="button yellow none" onclick="insert('-')">-</div>
+			<div class="button gray none" onclick="zero()">0</div>
+			<div class="button gray none" onclick="insert('.')">.</div>
+			<div class="button orange none" onclick="opt('/')">/</div>
+			<div class="button green none" onclick="opt('+')">+</div>
+			<div class="equal none" onclick="equal()">=</div>
+			
+		</div>
+	</div>
+
+
+	<script>
+		 function insert(num) {
+
+    var a = document.getElementById('textview');
+
+    a.value += num;
+
+}
+
+function opt(amd) {
+
+    var view = document.getElementById('textview');
+
+    if (view.value != "") {
+
+        view.value += amd;
+
+    }
+
+}
+
+function zero() {
+
+    var view = document.getElementById('textview');
+
+    if (view.value != "") {
+
+        view.value += '0';
+
+    }
+
+}
+
+function equal() {
+
+    var button = document.getElementsByClassName('none');
+
+    var a = document.getElementById('textview');
+
+    var exp = a.value;
+
+    if (exp) {
+
+        try {a.value = eval(exp);}
+
+        catch (e) {
+
+            alert ("Syntax Error!");
+
+            document.getElementById('textview').value = 'Syntax Error!';
+
+            none();
+
+        }
+
+    }
+
+    if (a.value == 0) {
+
+        a.value = "";
+
+    }
+
+    if(a.value == 'Infinity'){
+
+       document.getElementById('textview').value = "Can't divide by Zero!";
+
+       // button.onclick ='none()';
+
+       alert('Can\'t divide by Zero!')
+
+       none();
+
+    }
+
+}
+
+function none() {
+
+    alert('Press the Clear button!');
+
+} 
+
+function clean() {
+
+    document.getElementById('textview').value = '';
+
+}
+
+function back() {
+
+    var exp = document.form.textview.value;
+
+    document.form.textview.value = exp.substring(0, exp.length-1);
+
+}
+	</script>
+</body>
+</html>
